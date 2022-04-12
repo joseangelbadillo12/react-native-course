@@ -1,17 +1,27 @@
-import 'react-native-gesture-handler'
+import 'react-native-gesture-handler';
 import React from 'react';
-import { StackNavigator } from './src/navigator/StackNavigator';
 import { NavigationContainer } from '@react-navigation/native';
-import { StatusBar } from 'expo-status-bar';
- 
+import { Navigator } from './src/navigator/Navigator';
+import { AuthProvider } from './src/context/AuthContext';
+
+const AppState = ({ children }: any ) => {
+  return (
+    <AuthProvider>
+      { children }
+    </AuthProvider>
+  )
+}
+
+
 const App = () => {
   return (
     <NavigationContainer>
-      <StatusBar 
-      backgroundColor='white'
-      />
-          <StackNavigator />
+      <AppState>
+        <Navigator />
+      </AppState>
     </NavigationContainer>
-    );
-};
-export  default App;
+  )
+}
+
+
+export default App;
